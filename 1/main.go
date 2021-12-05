@@ -1,13 +1,10 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"log"
 	"os"
-	"path"
-	"runtime"
-	"strconv"
+
+	"github.com/gwpmad/advent-of-code-2021/util"
 )
 
 func one(lines []int) {
@@ -35,25 +32,7 @@ func two(lines []int) {
 }
 
 func main() {
-	_, filename, _, _ := runtime.Caller(0)
-
-	file, err := os.Open(path.Join(path.Dir(filename), "./input"))
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	lines := make([]int, 0)
-
-	for scanner.Scan() {
-		number, _ := strconv.Atoi(scanner.Text())
-		lines = append(lines, number)
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
+	lines := util.ParseInputLinesToIntSlice("./input")
 
 	switch os.Args[1] {
 	case "1":
