@@ -2,11 +2,13 @@ package util
 
 import (
 	"bufio"
+	"io/ioutil"
 	"log"
 	"os"
 	"path"
 	"runtime"
 	"strconv"
+	"strings"
 )
 
 func ParseInputLinesToIntSlice(pathToInputFile string) []int {
@@ -52,4 +54,29 @@ func ParseInputLinesToStringSlice(pathToInputFile string) []string {
 	}
 
 	return lines
+}
+
+func ParseSingleLineToIntSlice(pathToInputFile string) []int {
+	_, filename, _, _ := runtime.Caller(1)
+
+	file, err := os.Open(path.Join(path.Dir(filename), pathToInputFile))
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	bytes, err := ioutil.ReadAll(file)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fileContent := strings.TrimSpace(string(bytes))
+
+	stringInts := strings.Split(fileContent, ",")
+	ints := make([]int, len(stringInts))
+
+	for i := range stringInts {
+		ints[i], _ = strconv.Atoi(stringInts[i])
+	}
+	return ints
 }
