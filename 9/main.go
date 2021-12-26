@@ -39,7 +39,7 @@ func one(grid grid, lowPoints []string) {
 			result += (entry.value + 1)
 		}
 	}
-	fmt.Println("result", result)
+	fmt.Println("result:", result)
 }
 
 func two(grid grid, lowPoints []string) {
@@ -52,7 +52,7 @@ func two(grid grid, lowPoints []string) {
 
 	sort.Slice(basinSizes, func(i, j int) bool { return basinSizes[i] > basinSizes[j] })
 	result := basinSizes[0] * basinSizes[1] * basinSizes[2]
-	fmt.Println("result", result)
+	fmt.Println("result:", result)
 }
 
 func getValleySize(grid grid, lowPointCoords string) int {
