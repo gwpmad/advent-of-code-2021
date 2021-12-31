@@ -80,3 +80,22 @@ func ParseSingleLineToIntSlice(pathToInputFile string) []int {
 	}
 	return ints
 }
+
+func ParseFileAndSplitByDelimiter(pathToInputFile string, delimiter string) []string {
+	_, filename, _, _ := runtime.Caller(1)
+
+	file, err := os.Open(path.Join(path.Dir(filename), pathToInputFile))
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	bytes, err := ioutil.ReadAll(file)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fileContent := strings.TrimSpace(string(bytes))
+
+	return strings.Split(fileContent, delimiter)
+}
