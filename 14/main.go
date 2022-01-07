@@ -35,7 +35,7 @@ func one(pairCounts pairCounts, letterCounts letterCounts, rulesMap rulesMap) {
 	}
 
 	maxCount, minCount := getMaxAndMinLetterCounts(letterCounts)
-	fmt.Println("result", maxCount-minCount)
+	fmt.Println("result:", maxCount-minCount)
 }
 
 func two(pairCounts pairCounts, letterCounts letterCounts, rulesMap rulesMap) {
@@ -44,7 +44,7 @@ func two(pairCounts pairCounts, letterCounts letterCounts, rulesMap rulesMap) {
 	}
 
 	maxCount, minCount := getMaxAndMinLetterCounts(letterCounts)
-	fmt.Println("result", maxCount-minCount)
+	fmt.Println("result:", maxCount-minCount)
 }
 
 func processPairs(pairCounts pairCounts, letterCounts letterCounts, rulesMap rulesMap) pairCounts {
